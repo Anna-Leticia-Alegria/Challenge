@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Anna-Leticia-Alegria/Challenge/issues"
   },
-  "homepage": "https://github.com/Anna-Leticia-Alegria/Challenge#readme"
+  "homepage": "https://github.com/Anna-Leticia-Alegria/Challenge#readme",
+  "dependencies": {
+    "create-react-app": "^3.0.1"
+  }
 }
