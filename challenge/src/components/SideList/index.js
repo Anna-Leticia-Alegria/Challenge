@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './index.css';
+
 const SideList = () => {
     return (
-        <div>SideList</div>
+        <div className = "sideListContainer">SideList</div>
     );
 }
 

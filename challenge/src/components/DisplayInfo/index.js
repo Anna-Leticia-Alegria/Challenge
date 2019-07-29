@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class DisplayInfo extends React.Component {
-    render () {
-        return (
-            <div>DisplayInfo</div>
-        );
-    }
+import './index.css';
+
+const DisplayInfo = () => {
+    return (
+        <div className = "displayInfoContainer">DisplayInfo</div>
+    );
 }
 
 export default DisplayInfo;
