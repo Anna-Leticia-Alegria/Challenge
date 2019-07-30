@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
+import './index.less';
 
 import home from '../../assets/menuIcons/home.svg';
 import logOut from '../../assets/menuIcons/log-in.svg';
