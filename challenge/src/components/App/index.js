@@ -5,7 +5,7 @@ import './index.less';
 
 import Menu from '../Menu/index'
 import SideList from '../SideList/index'
-import DisplayInfo from '../DisplayInfo';
+import DisplayPage from '../DisplayPage';
 
 class App extends React.Component {
     state = { loggedIn : false , currentPage : 'logIn' }
@@ -20,7 +20,7 @@ class App extends React.Component {
             <div className = "appContainer">
                 <Menu loggedIn = {this.state.loggedIn} currentPage = {this.state.currentPage} setPage = {this.setPage}/>
                 <SideList loggedIn = {this.state.loggedIn} />
-                <DisplayInfo loggedIn = {this.state.loggedIn} />
+                <DisplayPage currentPage = {this.state.currentPage} changePage = {this.setPage} />
             </div>
         );
     }

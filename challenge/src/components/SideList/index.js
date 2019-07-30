@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 
 import './index.less';
 
-const SideList = () => {
-    return (
-        <div className = "sideListContainer">SideList</div>
-    );
+class SideList extends React.Component {
+    render(){
+        return (
+            <div className = "sideListContainer">
+                SideList
+            </div>
+        );
+    }
 }
 
 export default SideList;
