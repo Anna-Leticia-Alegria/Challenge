@@ -19,7 +19,7 @@ class App extends React.Component {
         return (
             <div className = "appContainer">
                 <Menu loggedIn = {this.state.loggedIn} currentPage = {this.state.currentPage} setPage = {this.setPage}/>
-                <SideList loggedIn = {this.state.loggedIn} />
+                <SideList loggedIn = {this.state.loggedIn} currentPage = {this.state.currentPage}/>
                 <DisplayPage currentPage = {this.state.currentPage} changePage = {this.setPage} />
             </div>
         );
