@@ -3,14 +3,15 @@ import React from 'react';
 import './index.less';
 
 import star from '../../assets/appIcons/favourites.svg';
-import emptyStar from '../../assets/appIcons/favourites.svg';
+import emptyStar from '../../assets/appIcons/emptyStar.svg';
 
 class AnimeItem extends React.Component {
-    animeInfo = {name: 'isuhfis ifhdisuf isudhfiusdf iushfisf', category: '', nEpisodes: '1235', nStars: 5, image: 'https://www.rightstufanime.com/images/productImages/816546021009_anime-sword-art-online-box-set-dvd-primary.jpg?resizeid=5&resizeh=1000&resizew=1000'}
+    animeInfo = {name: this.props.animeInfo.name, category: this.props.animeInfo.category, nEpisodes: this.props.animeInfo.nEpisodes, nStars: this.props.animeInfo.nStars, image: this.props.animeInfo.image};
     starArray = [];
 
     componentWillMount ()
     {
+        console.log(this.props.animeInfo);
         for(let i=0;i<(5 - this.animeInfo.nStars);i++) {
             this.starArray.push(emptyStar);
         }
