@@ -34,14 +34,14 @@ class SideList extends React.Component {
                         <div className = "sortByNameButton" onClick = { () => this.setState({sortBy : 'name'})} style={{backgroundColor:(this.state.sortBy === 'name') ? '#F0EBFF' : ''}} >
                             Name
                         </div>
-                        <div className = "sortByDateButton" onClick = { () => this.setState({sortBy : 'date'})} style={{backgroundColor:(this.state.sortBy === 'date') ? '#F0EBFF' : ''}} >
-                            Date
+                        <div className = "sortByCategoryButton" onClick = { () => this.setState({sortBy : 'category'})} style={{backgroundColor:(this.state.sortBy === 'category') ? '#F0EBFF' : ''}} >
+                            Category
                         </div>
                         <div className = "sortByStarButton" onClick = { () => this.setState({sortBy : 'star'})} style={{backgroundColor:(this.state.sortBy === 'star') ? '#F0EBFF' : ''}} >
                             Star
                         </div>
                     </div>
-                    <AnimeList />
+                    <AnimeList  searchResult = {this.state.searchResult} sortBy = {this.state.sortBy}/>
                 </div>
             </div>
         );

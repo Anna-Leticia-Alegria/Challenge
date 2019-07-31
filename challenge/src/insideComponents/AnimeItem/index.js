@@ -11,7 +11,6 @@ class AnimeItem extends React.Component {
 
     componentWillMount ()
     {
-        console.log(this.props.animeInfo);
         for(let i=0;i<(5 - this.animeInfo.nStars);i++) {
             this.starArray.push(emptyStar);
         }
