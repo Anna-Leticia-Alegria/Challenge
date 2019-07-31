@@ -8,17 +8,36 @@ import star from '../../assets/searchIcons/star.svg';
 import SearchBar from '../../insideComponents/SearchBar/index';
 
 class SideList extends React.Component {
+    state = { searchBy : 'name', searchResult : '', sortBy : ' name'}
+
+    onSearchBarSubmit = (term) => {
+        this.setState({searchResult : term});
+        console.log("Term do SideList: " + term);
+    }
+
     render(){
         return (
-            <div className = "sideListContainer">
-                <div className = "searchContainer" style={{display: (this.props.currentPage === "logIn") ? 'none' : ''}}>
-                    <div className = "searchByNameButton">
+            <div className = "sideListContainer" >
+                <div className = "searchContainer" style={{display: (this.props.currentPage === "home") ? '' : 'none'}}>
+                    <div className = "searchByNameButton" onClick = { () => this.setState({searchBy : 'name'})} style={{backgroundColor:(this.state.searchBy === 'name') ? '#F0EBFF' : ''}} >
                         <img src = {search} alt = "search"/>
                     </div>
-                    <div className = "searchByStarButton">
+                    <div className = "searchByStarButton" onClick = { () => this.setState({searchBy : 'star'})} style={{backgroundColor:(this.state.searchBy === 'star') ? '#F0EBFF' : ''}} >
                         <img src = {star} alt = "star"/>
                     </div>
-                    <SearchBar />
+                    <SearchBar onFormSubmit = {this.onSearchBarSubmit} searchByStar = {(this.state.searchBy === 'star')} />
+                </div>
+                
+                <div className = "sortByContainer" style={{display: (this.props.currentPage === "home") ? '' : 'none'}}>
+                    <div className = "sortByNameButton" onClick = { () => this.setState({sortBy : 'name'})} style={{backgroundColor:(this.state.sortBy === 'name') ? '#F0EBFF' : ''}} >
+                        Name
+                    </div>
+                    <div className = "sortByDateButton" onClick = { () => this.setState({sortBy : 'date'})} style={{backgroundColor:(this.state.sortBy === 'date') ? '#F0EBFF' : ''}} >
+                        Date
+                    </div>
+                    <div className = "sortByStarButton" onClick = { () => this.setState({sortBy : 'star'})} style={{backgroundColor:(this.state.sortBy === 'star') ? '#F0EBFF' : ''}} >
+                        Star
+                    </div>
                 </div>
             </div>
         );
