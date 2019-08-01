@@ -11,11 +11,11 @@ class Stars extends React.Component {
     calculateStars ()
     {
         this.starArray = [];
-        for(let i=0;i<(5 - this.props.nStars);i++) {
-            this.starArray.push(emptyStar);
-        }
         for(let i=0;i<this.props.nStars;i++) {
             this.starArray.push(star);
+        }
+        for(let i=0;i<(5 - this.props.nStars);i++) {
+            this.starArray.push(emptyStar);
         }
     }
 

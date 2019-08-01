@@ -27,7 +27,7 @@ class SideList extends React.Component {
                         <div className = "searchByStarButton" onClick = { () => this.setState({searchBy : 'star'})} style={{backgroundColor:(this.state.searchBy === 'star') ? '#F0EBFF' : ''}} >
                             <img src = {star} alt = "star"/>
                         </div>
-                        <SearchBar onFormSubmit = {this.onSearchBarSubmit} />
+                        <SearchBar onFormSubmit = {this.onSearchBarSubmit} searchByStar = {(this.state.searchBy === 'star')}/>
                     </div>
                     
                     <div className = "sortByContainer">
