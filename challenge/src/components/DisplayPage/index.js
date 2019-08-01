@@ -14,7 +14,7 @@ const DisplayPage = ({currentPage, currentAnimeItem, changePage}) => {
     }
     else if(currentPage === "home")
     {
-        return <div className = "displayPageContainer"> <AnimePage /> </div>; 
+        return <div className = "displayPageContainer"> <AnimePage animeInfo = {currentAnimeItem}/> </div>; 
     }
     else if(currentPage === "profile")
     {

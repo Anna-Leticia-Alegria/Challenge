@@ -19,7 +19,7 @@ class SideList extends React.Component {
     render(){
         return (
             <div className = "sideListContainer" >
-                <div style={{display: (this.props.currentPage === "home") ? '' : 'none', width: '100%', height: '100%'}} >
+                <div style={{display: (this.props.currentPage === "logIn") ? 'none' : '', width: '100%', height: '100%'}} >
                     <div className = "searchContainer">
                         <div className = "searchByNameButton" onClick = { () => this.setState({searchBy : 'name'})} style={{backgroundColor:(this.state.searchBy === 'name') ? '#F0EBFF' : ''}} >
                             <img src = {search} alt = "search"/>
@@ -37,11 +37,14 @@ class SideList extends React.Component {
                         <div className = "sortByCategoryButton" onClick = { () => this.setState({sortBy : 'category'})} style={{backgroundColor:(this.state.sortBy === 'category') ? '#F0EBFF' : ''}} >
                             Category
                         </div>
+                        <div className = "sortByDateButton" onClick = { () => this.setState({sortBy : 'date'})} style={{backgroundColor:(this.state.sortBy === 'date') ? '#F0EBFF' : ''}} >
+                            Date
+                        </div>
                         <div className = "sortByStarButton" onClick = { () => this.setState({sortBy : 'star'})} style={{backgroundColor:(this.state.sortBy === 'star') ? '#F0EBFF' : ''}} >
                             Star
                         </div>
                     </div>
-                    <AnimeList  searchResult = {this.state.searchResult} sortBy = {this.state.sortBy}/>
+                    <AnimeList  searchResult = {this.state.searchResult} sortBy = {this.state.sortBy} onAnimeSelected = {this.props.onAnimeSelected} animeSelected = {this.props.animeSelected}/>
                 </div>
             </div>
         );
