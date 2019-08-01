@@ -23,7 +23,7 @@ class AnimePage extends React.Component {
                     </div>
                 </div>
                 <div className = "bodyContainer">
-                    <div className = "imageContainer">
+                    <div className = "animeImageContainer">
                         <img src = {this.props.animeInfo.image} alt = "anime image" />
                     </div>
                     <div className = "infoContainer">
@@ -33,7 +33,7 @@ class AnimePage extends React.Component {
                         <div>
                             Total episodes: {this.props.animeInfo.nEpisodes}
                         </div>
-                        <div>
+                        <div style ={{textAlign : 'justify'}}>
                             Synopsis: {this.props.animeInfo.synopsis}
                         </div>
                         <div>
