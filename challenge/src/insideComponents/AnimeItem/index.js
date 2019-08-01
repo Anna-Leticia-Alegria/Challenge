@@ -5,7 +5,7 @@ import './index.less';
 import Stars from '../Stars/index';
 
 class AnimeItem extends React.Component {
-    animeInfo = {name: this.props.animeInfo.name, category: this.props.animeInfo.category, nEpisodes: this.props.animeInfo.nEpisodes, date : this.props.animeInfo.date, ranked : this.props.animeInfo.ranked, nStars: this.props.animeInfo.nStars, image: this.props.animeInfo.image, synopsis: this.props.animeInfo.synopsis};
+    animeInfo = this.props.animeInfo;
 
     render (){
         return (

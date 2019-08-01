@@ -11,6 +11,10 @@ class App extends React.Component {
 
     setPage = (currentPage) => {
         this.setState({currentPage : currentPage});
+
+        if(currentPage != 'home') {
+            this.setState({animeSelected : null});
+        }
         console.log(currentPage);
     }
 

@@ -5,6 +5,9 @@ import './index.less';
 import Stars from '../Stars/index';
 
 class AnimePage extends React.Component {
+    videoId () {
+        return this.props.animeInfo.trailerUrl.substring(32);
+    }
     render() {
         if(this.props.animeInfo === null) {
             return <div className = "warningMessageContainer"> Please select an anime entry to see it's details</div>
@@ -40,6 +43,9 @@ class AnimePage extends React.Component {
                             Added at: {this.props.animeInfo.date}
                         </div>
                     </div>
+                </div>
+                <div className = "videoContainer">
+                    <iframe title = "video player" src={"https://www.youtube.com/embed/" + this.videoId()} />
                 </div>
             </div>
         );
