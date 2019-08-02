@@ -51,9 +51,9 @@ class SearchBar extends React.Component {
         const {term} = this.state
         return (
             <div className = "searchBarContainer">
-                <form className = "formContainer" onSubmit = {this.onFormSubmit}>
+                <form className = "formSearchContainer" onSubmit = {this.onFormSubmit}>
                     <input 
-                            className = "inputContainer"
+                            className = "inputSearchContainer"
                             type = "text" 
                             value = {term} 
                             onChange = {this.onInputChange}
