@@ -7,7 +7,7 @@ import './index.less';
 import Stars from '../Stars/index';
 
 class AddAnimePage extends React.Component {
-    state = {name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: ''};
+    state = {name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: '', starsNotClicked: 0};
     categoryOptions = ['drama', 'isekai', 'shounen', 'shoujo'];
 
     onFormSubmit = (event) => {
@@ -17,11 +17,19 @@ class AddAnimePage extends React.Component {
     onSaveClick = () => {
         //abrir popup
         //mandar para o back os dados
-        this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: ''});
+        this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: '', starsNotClicked: 0});
     }
 
     onStarClick = (nStars) => {
         this.setState({nStars : nStars});
+    }
+
+    onStarMousePass = (nStars) => {
+        this.setState({starsNotClicked : nStars});
+    }
+
+    onStarMouseLeave = () => {
+        this.setState({starsNotClicked : 0});
     }
 
     render() {
@@ -87,7 +95,12 @@ class AddAnimePage extends React.Component {
                             Rank:
                         </div>
                         <div className = "addStarContainer">
-                            <Stars nStars = {this.state.nStars} ranked = {true} addStars = {true} onStarClick = {this.onStarClick}/>
+                            <Stars nStars = {(this.state.nStars) ? this.state.nStars : this.state.starsNotClicked} 
+                                   ranked = {true} addStars = {true} 
+                                   onStarClick = {this.onStarClick} 
+                                   onStarMousePass = {this.onStarMousePass} 
+                                   onStarMouseLeave = {this.onStarMouseLeave}
+                            />
                         </div>
                     </div>
                     <div className = "fieldInfoContainer">

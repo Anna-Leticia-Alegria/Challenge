@@ -24,11 +24,11 @@ class Stars extends React.Component {
             <div className = "numberOfStars">
                 {this.calculateStars()}
                 { (this.props.ranked) ? (this.starArray.map((typeOfStar, idx) => {
-                    return <div key = {idx} className = "starContainer" onClick = {() => {
-                        if(this.props.addStars) {
-                            this.props.onStarClick (idx+1);
-                        }
-                    }}><img src = {typeOfStar} alt = 'rank' /></div>
+                    return <div key = {idx} className = "starContainer" 
+                        onClick = {() => {if(this.props.addStars) {this.props.onStarClick (idx+1);}}}
+                        onMouseEnter = {() => {if(this.props.addStars) {this.props.onStarMousePass (idx+1);}}}
+                        onMouseLeave = {() => {if(this.props.addStars) {this.props.onStarMouseLeave ();}}}
+                    ><img src = {typeOfStar} alt = 'rank' /></div>
                 })) : 'new' }
             </div> 
         );
