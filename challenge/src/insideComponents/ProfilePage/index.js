@@ -4,7 +4,7 @@ import './index.less';
 
 class ProfilePage extends React.Component {
     state = { actualUserData : {userName : 'Lele', userLastName : 'Alegria', userBirthDate : '23/10/1995', userEmail : 'annaalegria23@hotmail.com', userPassword : 'uauauiua'},
-              newUserData : {userName : '', userLastName : '', userBirthDate : '', userEmail : '', userPassword : ''},
+              newUserData : {userName : '', userLastName : '', userBirthDate : '', userEmail : '', userPassword : '', userConfirmPassword : ''},
               isEditOn : false};
 
     onFormSubmit = (event) => {
@@ -13,20 +13,24 @@ class ProfilePage extends React.Component {
 
     onSaveClick = () => {
         const {actualUserData, newUserData} = this.state
-        let dataToBeSaved = {};
+
+        if(newUserData.userPassword === newUserData.userConfirmPassword) {
+            let dataToBeSaved = {};
     
-        for (let field in actualUserData) {
-            if(actualUserData.hasOwnProperty(field)) {
-              if (newUserData[field] !== '') {
-                dataToBeSaved[field] = newUserData[field];
-              }
-              else {
-                dataToBeSaved[field] = actualUserData[field];
-              }
-            }
-        } 
-        this.setState({actualUserData: dataToBeSaved});
-        this.setState({isEditOn : false});
+            for (let field in actualUserData) {
+                if(actualUserData.hasOwnProperty(field)) {
+                  if (newUserData[field] !== '') {
+                    dataToBeSaved[field] = newUserData[field];
+                  }
+                  else {
+                    dataToBeSaved[field] = actualUserData[field];
+                  }
+                }
+            } 
+            this.setState({actualUserData: dataToBeSaved});
+            this.setState({isEditOn : false});
+        }
+        
     }
 
     onCancelClick = () => {
@@ -52,7 +56,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userName} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : event.target.value, userLastName : newUserData.userLastName, userBirthDate :newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword} } )}}
+                                onChange = {(event)=>{this.setState( { newUserData : {userName : event.target.value, userLastName : newUserData.userLastName, userBirthDate :newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword} } )}}
                             />
                         </form>
                         : actualUserData.userName}
@@ -66,7 +70,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userLastName} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : event.target.value, userBirthDate :newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword}} )}}
+                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : event.target.value, userBirthDate :newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword}} )}}
                             />
                         </form>
                         : actualUserData.userLastName}
@@ -80,7 +84,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userBirthDate} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : event.target.value, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword} } )}}
+                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : event.target.value, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword} } )}}
                             />
                         </form>
                         : actualUserData.userBirthDate}
@@ -94,10 +98,24 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userEmail} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : event.target.value, userPassword : newUserData.userPassword} } )}}
+                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : event.target.value, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword} } )}}
                             />
                         </form>
                         : actualUserData.userEmail}
+                    </div>
+                </div>
+                <div className = "fieldProfileContainer">
+                    <div className = "fieldNameProfileContainer">Password: </div>
+                    <div className = "infoProfileContainer">
+                        {(isEditOn) ? <form className = "formProfileContainer" onSubmit = {this.onFormSubmit}>
+                            <input 
+                                className = "changeUserInputContainer"
+                                type = "password" 
+                                value = {newUserData.userPassword} 
+                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : event.target.value, userConfirmPassword : newUserData.userConfirmPassword} } )}}
+                            />
+                        </form>
+                        : ''}
                     </div>
                 </div>
                 <div className = "fieldProfileContainer" style={{display: (isEditOn) ? '' : 'none'}}>
@@ -106,9 +124,9 @@ class ProfilePage extends React.Component {
                         <form className = "formProfileContainer" onSubmit = {this.onFormSubmit}>
                             <input 
                                 className = "changeUserInputContainer"
-                                type = "text" 
-                                value = '*'
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : event.target.value} } )}}
+                                type = "password" 
+                                value = {newUserData.userConfirmPassword} 
+                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : event.target.value} } )}}
                             />
                         </form>
                     </div>
