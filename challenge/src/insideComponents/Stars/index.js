@@ -24,7 +24,11 @@ class Stars extends React.Component {
             <div className = "numberOfStars">
                 {this.calculateStars()}
                 { (this.props.ranked) ? (this.starArray.map((typeOfStar, idx) => {
-                    return <div key = {idx} className = "starContainer"><img src = {typeOfStar} alt = 'rank' /></div>
+                    return <div key = {idx} className = "starContainer" onClick = {() => {
+                        if(this.props.addStars) {
+                            this.props.onStarClick (idx+1);
+                        }
+                    }}><img src = {typeOfStar} alt = 'rank' /></div>
                 })) : 'new' }
             </div> 
         );

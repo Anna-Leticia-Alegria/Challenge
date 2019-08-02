@@ -19,7 +19,7 @@ class AnimeItem extends React.Component {
                     </div>
                     <div className = "starImageInfoContainer">
                         <div style = {{height: '20%'}}>
-                            <Stars nStars = {this.animeInfo.nStars} ranked = {this.animeInfo.ranked} />
+                            <Stars nStars = {this.animeInfo.nStars} ranked = {this.animeInfo.ranked} addStars = {false}/>
                         </div>
                         <div className = "imageContainer">
                             <img src = {this.animeInfo.image} alt = "animeImage"/>    

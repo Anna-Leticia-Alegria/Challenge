@@ -17,7 +17,11 @@ class AddAnimePage extends React.Component {
     onSaveClick = () => {
         //abrir popup
         //mandar para o back os dados
-        this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: ''})
+        this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: ''});
+    }
+
+    onStarClick = (nStars) => {
+        this.setState({nStars : nStars});
     }
 
     render() {
@@ -83,7 +87,7 @@ class AddAnimePage extends React.Component {
                             Rank:
                         </div>
                         <div className = "addStarContainer">
-                            <Stars nStars = {0} ranked = {true} />
+                            <Stars nStars = {this.state.nStars} ranked = {true} addStars = {true} onStarClick = {this.onStarClick}/>
                         </div>
                     </div>
                     <div className = "fieldInfoContainer">
