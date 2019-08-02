@@ -12,24 +12,23 @@ class App extends React.Component {
     setPage = (currentPage) => {
         this.setState({currentPage : currentPage});
 
-        if(currentPage != 'home') {
+        if(currentPage !== 'home') {
             this.setState({animeSelected : null});
         }
-        console.log(currentPage);
     }
 
     onAnimeSelected = (animeInfo) => {
         this.setState({animeSelected : animeInfo});
         this.setState({currentPage : 'home'});
-        console.log(animeInfo);
     };
 
     render () {
+        const {loggedIn, currentPage, animeSelected} = this.state
         return (
             <div className = "appContainer">
-                <Menu loggedIn = {this.state.loggedIn} currentPage = {this.state.currentPage} setPage = {this.setPage}/>
-                <SideList loggedIn = {this.state.loggedIn} currentPage = {this.state.currentPage} onAnimeSelected = {this.onAnimeSelected} animeSelected = {this.state.animeSelected}/>
-                <DisplayPage currentPage = {this.state.currentPage}  currentAnimeItem = {this.state.animeSelected} changePage = {this.setPage}/>
+                <Menu loggedIn = {loggedIn} currentPage = {currentPage} setPage = {this.setPage}/>
+                <SideList loggedIn = {loggedIn} currentPage = {currentPage} onAnimeSelected = {this.onAnimeSelected} animeSelected = {animeSelected}/>
+                <DisplayPage currentPage = {currentPage}  currentAnimeItem = {animeSelected} changePage = {this.setPage}/>
             </div>
         );
     }

@@ -10,24 +10,26 @@ class Stars extends React.Component {
 
     calculateStars ()
     {
+        const {nStars} = this.props
         this.starArray = [];
-        for(let i=0;i<this.props.nStars;i++) {
+        for(let i=0;i<nStars;i++) {
             this.starArray.push(star);
         }
-        for(let i=0;i<(5 - this.props.nStars);i++) {
+        for(let i=0;i<(5 - nStars);i++) {
             this.starArray.push(emptyStar);
         }
     }
 
     render (){
+        const {ranked, addStars} = this.props
         return (
             <div className = "numberOfStars">
                 {this.calculateStars()}
-                { (this.props.ranked) ? (this.starArray.map((typeOfStar, idx) => {
+                { (ranked) ? (this.starArray.map((typeOfStar, idx) => {
                     return <div key = {idx} className = "starContainer" 
-                        onClick = {() => {if(this.props.addStars) {this.props.onStarClick (idx+1);}}}
-                        onMouseEnter = {() => {if(this.props.addStars) {this.props.onStarMousePass (idx+1);}}}
-                        onMouseLeave = {() => {if(this.props.addStars) {this.props.onStarMouseLeave ();}}}
+                        onClick = {() => {if(addStars) {this.props.onStarClick (idx+1);}}}
+                        onMouseEnter = {() => {if(addStars) {this.props.onStarMousePass (idx+1);}}}
+                        onMouseLeave = {() => {if(addStars) {this.props.onStarMouseLeave ();}}}
                     ><img src = {typeOfStar} alt = 'rank' /></div>
                 })) : 'new' }
             </div> 

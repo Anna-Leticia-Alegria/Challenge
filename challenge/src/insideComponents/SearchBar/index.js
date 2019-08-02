@@ -3,11 +3,12 @@ import React from 'react';
 import './index.less';
 
 class SearchBar extends React.Component {
-    state = { term : '' , searchByStar : false};
+    state = { term : ''};
     firstTimeStar = true;
 
     componentDidUpdate () {
-        if(this.props.searchByStar === false) {
+        const {searchByStar} = this.props
+        if(searchByStar === false) {
             this.firstTimeStar = true;
         }
         else {
@@ -26,13 +27,15 @@ class SearchBar extends React.Component {
     }
 
     onKeyDown = (event) => {
-        if (this.props.searchByStar && event.keyCode === 8) {
+        const {searchByStar} = this.props
+        if (searchByStar && event.keyCode === 8) {
             this.setState( { term : '' } );
         }
     }
 
     onInputChange = (event) => {
-        if (this.props.searchByStar) {
+        const {searchByStar} = this.props
+        if (searchByStar) {
             const re = /^[1-5\b]{1}$/;
 
             if (event.target.value === '' || re.test(event.target.value)) {
@@ -45,13 +48,14 @@ class SearchBar extends React.Component {
     }
 
     render (){
+        const {term} = this.state
         return (
             <div className = "searchBarContainer">
                 <form className = "formContainer" onSubmit = {this.onFormSubmit}>
                     <input 
                             className = "inputContainer"
                             type = "text" 
-                            value = {this.state.term} 
+                            value = {term} 
                             onChange = {this.onInputChange}
                             onKeyDown = {this.onKeyDown}
                     />

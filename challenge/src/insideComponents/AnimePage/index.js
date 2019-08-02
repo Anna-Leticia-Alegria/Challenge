@@ -6,41 +6,43 @@ import Stars from '../Stars/index';
 
 class AnimePage extends React.Component {
     videoId () {
-        return this.props.animeInfo.trailerUrl.substring(32);
+        const {animeInfo} = this.props
+        return animeInfo.trailerUrl.substring(32);
     }
     render() {
-        if(this.props.animeInfo === null) {
+        const {animeInfo} = this.props
+        if(animeInfo === null) {
             return <div className = "warningMessageContainer"> Please select an anime entry to see it's details</div>
         }
         return (
             <div className = "animePageContainer">
                 <div className = "headerContainer">
                     <div className = "nameContainer">
-                        {this.props.animeInfo.name}
+                        {animeInfo.name}
                     </div>
                     <div className = "editButton">
                         edit
                     </div>
                     <div className = "starsContainer">
-                        <Stars nStars = {this.props.animeInfo.nStars} ranked = {this.props.animeInfo.ranked} />
+                        <Stars nStars = {animeInfo.nStars} ranked = {animeInfo.ranked} />
                     </div>
                 </div>
                 <div className = "bodyContainer">
                     <div className = "animeImageContainer">
-                        <img src = {this.props.animeInfo.image} alt = "anime image" />
+                        <img src = {animeInfo.image} alt = "anime" />
                     </div>
                     <div className = "infoContainer">
                         <div>
-                            Category: {this.props.animeInfo.category}
+                            Category: {animeInfo.category}
                         </div>
                         <div>
-                            Total episodes: {this.props.animeInfo.nEpisodes}
+                            Total episodes: {animeInfo.nEpisodes}
                         </div>
                         <div style ={{textAlign : 'justify'}}>
-                            Synopsis: {this.props.animeInfo.synopsis}
+                            Synopsis: {animeInfo.synopsis}
                         </div>
                         <div>
-                            Added at: {this.props.animeInfo.date}
+                            Added at: {animeInfo.date}
                         </div>
                     </div>
                 </div>

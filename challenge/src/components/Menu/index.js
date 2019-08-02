@@ -11,19 +11,20 @@ import user from '../../assets/menuIcons/user.svg';
 class Menu extends React.Component {
 
     render() {
+        const {currentPage} = this.props
         return (
             <div className="menuContainer">
-                <div className="menuInfo" style={{display: (this.props.currentPage === "logIn") ? 'none' : ''}}>
-                    <div className="button" onClick = { () => this.props.setPage("home")} style={{backgroundColor:(this.props.currentPage === 'home') ? '#F5F5F5' : ''}} >
+                <div className="menuInfo" style={{display: (currentPage === "logIn") ? 'none' : ''}}>
+                    <div className="button" onClick = { () => this.props.setPage("home")} style={{backgroundColor:(currentPage === 'home') ? '#F5F5F5' : ''}} >
                         <img src={home} alt='home' width = "70%" />
                     </div>
-                    <div className="button" onClick = { () => this.props.setPage("profile")} style={{backgroundColor:(this.props.currentPage === 'profile') ? '#F5F5F5' : ''}} >
+                    <div className="button" onClick = { () => this.props.setPage("profile")} style={{backgroundColor:(currentPage === 'profile') ? '#F5F5F5' : ''}} >
                         <img src={user} alt='user' width = "60%"/>
                     </div>
-                    <div className="button" onClick = { () => this.props.setPage("addAnime")} style={{backgroundColor:(this.props.currentPage === 'addAnime') ? '#F5F5F5' : ''}} >
+                    <div className="button" onClick = { () => this.props.setPage("addAnime")} style={{backgroundColor:(currentPage === 'addAnime') ? '#F5F5F5' : ''}} >
                         <img src={plus} alt='plus' width = "60%"/>
                     </div>
-                    <div className="button" onClick = { () => this.props.setPage("logOut")} style={{backgroundColor:(this.props.currentPage === 'logOut') ? '#F5F5F5' : ''}} >
+                    <div className="button" onClick = { () => this.props.setPage("logOut")} style={{backgroundColor:(currentPage === 'logOut') ? '#F5F5F5' : ''}} >
                         <img src={logOut} alt='logOut' width = "60%"/>
                     </div>
                 </div>

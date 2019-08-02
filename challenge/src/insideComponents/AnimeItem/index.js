@@ -5,24 +5,24 @@ import './index.less';
 import Stars from '../Stars/index';
 
 class AnimeItem extends React.Component {
-    animeInfo = this.props.animeInfo;
 
     render (){
+        const {animeSelected, animeInfo} = this.props
         return (
-            <div className = "animeItemContainer" onClick = { () => this.props.onAnimeSelected(this.animeInfo)} style={{backgroundColor:(this.props.animeSelected === this.animeInfo) ? '#C7B3FB' : ''}}>
+            <div className = "animeItemContainer" onClick = { () => this.props.onAnimeSelected(animeInfo)} style={{backgroundColor:(animeSelected === this.animeInfo) ? '#C7B3FB' : ''}}>
                 <div className = "animeInfoContainer">
                     <div className = "writtenInfoContainer">
-                        <div className = "writtenInfo">Name: {this.animeInfo.name} </div>
-                        <div className = "writtenInfo">Category: {this.animeInfo.category} </div>
-                        <div className = "writtenInfo">Episodes: {this.animeInfo.nEpisodes} </div>
-                        <div className = "writtenInfo">Date: {this.animeInfo.date} </div>
+                        <div className = "writtenInfo">Name: {animeInfo.name} </div>
+                        <div className = "writtenInfo">Category: {animeInfo.category} </div>
+                        <div className = "writtenInfo">Episodes: {animeInfo.nEpisodes} </div>
+                        <div className = "writtenInfo">Date: {animeInfo.date} </div>
                     </div>
                     <div className = "starImageInfoContainer">
                         <div style = {{height: '20%'}}>
-                            <Stars nStars = {this.animeInfo.nStars} ranked = {this.animeInfo.ranked} addStars = {false}/>
+                            <Stars nStars = {animeInfo.nStars} ranked = {animeInfo.ranked} addStars = {false}/>
                         </div>
                         <div className = "imageContainer">
-                            <img src = {this.animeInfo.image} alt = "animeImage"/>    
+                            <img src = {animeInfo.image} alt = "animeImage"/>    
                         </div>
                     </div>
                 </div>

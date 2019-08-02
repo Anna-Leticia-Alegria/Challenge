@@ -16,6 +16,7 @@ class AddAnimePage extends React.Component {
 
     onSaveClick = () => {
         //abrir popup
+        //setar date com a data que a pessoa fez isso (parse?)
         //mandar para o back os dados
         this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: '', starsNotClicked: 0});
     }
@@ -33,6 +34,7 @@ class AddAnimePage extends React.Component {
     }
 
     render() {
+        const {name, category, nEpisodes, nStars,image, synopsis, trailerUrl, starsNotClicked} = this.state
         return (
             <div className="addAnimePageContainer">
                 <div className = "addInfoHeader">
@@ -47,7 +49,7 @@ class AddAnimePage extends React.Component {
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
-                                value = {this.state.name} 
+                                value = {name} 
                                 onChange = {(event)=>{this.setState( { name : event.target.value } );}}
                             />
                         </form>
@@ -60,7 +62,7 @@ class AddAnimePage extends React.Component {
                             className = "categoryDropdown" 
                             options={this.categoryOptions} 
                             onChange={(event)=>{this.setState( { category : event.value } );}} 
-                            value={this.state.category} 
+                            value={category} 
                             placeholder="Select an option" 
                         />
                     </div>
@@ -72,7 +74,7 @@ class AddAnimePage extends React.Component {
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
-                                value = {this.state.nEpisodes} 
+                                value = {nEpisodes} 
                                 onChange = {(event)=>{this.setState( { nEpisodes : event.target.value } );}}
                             />
                         </form>
@@ -85,7 +87,7 @@ class AddAnimePage extends React.Component {
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
-                                value = {this.state.synopsis} 
+                                value = {synopsis} 
                                 onChange = {(event)=>{this.setState( { synopsis : event.target.value } );}}
                             />
                         </form>
@@ -95,7 +97,7 @@ class AddAnimePage extends React.Component {
                             Rank:
                         </div>
                         <div className = "addStarContainer">
-                            <Stars nStars = {(this.state.nStars) ? this.state.nStars : this.state.starsNotClicked} 
+                            <Stars nStars = {(nStars) ? nStars : starsNotClicked} 
                                    ranked = {true} addStars = {true} 
                                    onStarClick = {this.onStarClick} 
                                    onStarMousePass = {this.onStarMousePass} 
@@ -111,7 +113,7 @@ class AddAnimePage extends React.Component {
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
-                                value = {this.state.image} 
+                                value = {image} 
                                 onChange = {(event)=>{this.setState( { image : event.target.value } );}}
                             />
                         </form>
@@ -124,7 +126,7 @@ class AddAnimePage extends React.Component {
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
-                                value = {this.state.trailerUrl} 
+                                value = {trailerUrl} 
                                 onChange = {(event)=>{this.setState( { trailerUrl : event.target.value } );}}
                             />
                         </form>

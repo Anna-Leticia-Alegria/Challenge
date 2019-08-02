@@ -37,12 +37,13 @@ class AnimeList extends React.Component {
     }
 
     render (){
+        const {onAnimeSelected, animeSelected} = this.props
         return (
             <div className = "animeListContainer">
                 <Scrollbar>
                     {this.sortList()}
                     {this.animeList.map((animeInfo) => {
-                        return <AnimeItem key = {animeInfo.name} animeInfo = {animeInfo} onAnimeSelected = {this.props.onAnimeSelected} animeSelected = {this.props.animeSelected}/>
+                        return <AnimeItem key = {animeInfo.name} animeInfo = {animeInfo} onAnimeSelected = {onAnimeSelected} animeSelected = {animeSelected}/>
                     })}
                 </Scrollbar>
             </div>  
