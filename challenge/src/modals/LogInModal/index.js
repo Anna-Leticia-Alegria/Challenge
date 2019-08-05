@@ -3,7 +3,7 @@ import React from 'react'
 import './index.less'
 
 class LogInModal extends React.Component {
-    state = {userName : '', lastName : '', birthday : '', email : '', password : '', confirmPassword : ''}
+    state = {userName : '', lastName : '', birthday : '', email : '', password : '', confirmPassword : '', passwordError : ''}
 
     onFormSubmit = (event) => {
         event.preventDefault()
@@ -15,10 +15,16 @@ class LogInModal extends React.Component {
             //enviar dados ao banco
             this.props.closeModal()
         }
+        else if (password === '') {
+            this.setState({passwordError : 'noPassword'})
+        }
+        else {
+            this.setState({passwordError : 'difPasswords'})
+        }
     }
 
     render () {
-        const {userName, lastName, birthday, email, password, confirmPassword} = this.state
+        const {userName, lastName, birthday, email, password, confirmPassword, passwordError} = this.state
         return (
             <div className = "newUserContainer">
                 <div className = "infoNewUserContainer">
@@ -86,6 +92,9 @@ class LogInModal extends React.Component {
                             onChange = {(event)=>{this.setState({confirmPassword : event.target.value})}}
                         />
                     </form>
+                </div>
+                <div  className = "errorContainer" style = {{display : (passwordError === '') ? 'none' : ''}}>
+                    {(passwordError === 'noPassword') ? 'Please type a password' : (passwordError === 'difPasswords') ? "Passwords don't match" : 'Error'}
                 </div>
                 <div className = "newUserSaveButton" onClick = {this.onSaveClick} >
                     save
