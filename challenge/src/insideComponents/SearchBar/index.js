@@ -58,6 +58,7 @@ class SearchBar extends React.Component {
                             value = {term} 
                             onChange = {this.onInputChange}
                             onKeyDown = {this.onKeyDown}
+                            placeholder = "Search anime"
                     />
                 </form>
             </div>  

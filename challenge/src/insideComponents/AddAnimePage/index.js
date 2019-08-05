@@ -51,6 +51,7 @@ class AddAnimePage extends React.Component {
                                 type = "text" 
                                 value = {name} 
                                 onChange = {(event)=>{this.setState( { name : event.target.value } );}}
+                                placeholder = "Type anime name here"
                             />
                         </form>
                     </div>
@@ -78,6 +79,7 @@ class AddAnimePage extends React.Component {
                                 type = "text" 
                                 value = {nEpisodes} 
                                 onChange = {(event)=>{this.setState( { nEpisodes : event.target.value } );}}
+                                placeholder = "Type episodes number here"
                             />
                         </form>
                     </div>
@@ -91,6 +93,7 @@ class AddAnimePage extends React.Component {
                                 type = "text" 
                                 value = {synopsis} 
                                 onChange = {(event)=>{this.setState( { synopsis : event.target.value } );}}
+                                placeholder = "Type synopsis here"
                             />
                         </form>
                     </div>
@@ -117,12 +120,13 @@ class AddAnimePage extends React.Component {
                                 type = "text" 
                                 value = {image} 
                                 onChange = {(event)=>{this.setState( { image : event.target.value } );}}
+                                placeholder = "Paste image URL here"
                             />
                         </form>
                     </div>
                     <div className = "fieldInfoContainer">
                         <div className = "fieldNameContainer">
-                            Trailer youtube URL:
+                            Trailer URL:
                         </div> 
                         <form className = "formAddContainer" onSubmit = {this.onFormSubmit}>
                             <input 
@@ -130,6 +134,7 @@ class AddAnimePage extends React.Component {
                                 type = "text" 
                                 value = {trailerUrl} 
                                 onChange = {(event)=>{this.setState( { trailerUrl : event.target.value } );}}
+                                placeholder = "Paste youtube trailer URL here"
                             />
                         </form>
                     </div>
