@@ -45,7 +45,7 @@ class AddAnimePage extends React.Component {
                         <div className = "fieldNameContainer">
                             Name:
                         </div>
-                        <form className = "formContainer" onSubmit = {this.onFormSubmit}>
+                        <form className = "formAddContainer" onSubmit = {this.onFormSubmit}>
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
@@ -60,6 +60,8 @@ class AddAnimePage extends React.Component {
                         </div>
                         <Dropdown 
                             className = "categoryDropdown" 
+                            controlClassName = "categoryDropdown"
+                            menuClassName = "categoryMenuDropdown"
                             options={this.categoryOptions} 
                             onChange={(event)=>{this.setState( { category : event.value } );}} 
                             value={category} 
@@ -70,7 +72,7 @@ class AddAnimePage extends React.Component {
                         <div className = "fieldNameContainer">
                             Total episodes:
                         </div>
-                        <form className = "formContainer" onSubmit = {this.onFormSubmit}>
+                        <form className = "formAddContainer" onSubmit = {this.onFormSubmit}>
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
@@ -83,7 +85,7 @@ class AddAnimePage extends React.Component {
                         <div className = "fieldNameContainer">
                             Synopsis:
                         </div>
-                        <form className = "formContainer" onSubmit = {this.onFormSubmit}>
+                        <form className = "formAddContainer" onSubmit = {this.onFormSubmit}>
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
@@ -109,7 +111,7 @@ class AddAnimePage extends React.Component {
                         <div className = "fieldNameContainer">
                             Image Link:
                         </div>
-                        <form className = "formContainer" onSubmit = {this.onFormSubmit}>
+                        <form className = "formAddContainer" onSubmit = {this.onFormSubmit}>
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
@@ -122,7 +124,7 @@ class AddAnimePage extends React.Component {
                         <div className = "fieldNameContainer">
                             Trailer youtube URL:
                         </div> 
-                        <form className = "formContainer" onSubmit = {this.onFormSubmit}>
+                        <form className = "formAddContainer" onSubmit = {this.onFormSubmit}>
                             <input 
                                 className = "addInfoInputContainer"
                                 type = "text" 
