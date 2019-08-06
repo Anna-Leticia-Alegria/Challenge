@@ -1,16 +1,26 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 import './index.less';
 
 import Stars from '../Stars/index';
+import EditAnimePageModal from '../../modals/EditAnimePageModal/index'
 
 class AnimePage extends React.Component {
+    state = {isModalOpen : false}
+
     videoId () {
         const {animeInfo} = this.props
         return animeInfo.trailerUrl.substring(32);
     }
+
+    handleCloseModal = () => {
+        this.setState({isModalOpen : false})
+    }
+
     render() {
         const {animeInfo} = this.props
+        const {isModalOpen} = this.state
         if(animeInfo === null) {
             return <div className = "warningMessageContainer"> Please select an anime entry to see it's details</div>
         }
@@ -20,7 +30,7 @@ class AnimePage extends React.Component {
                     <div className = "nameContainer">
                         {animeInfo.name}
                     </div>
-                    <div className = "editButton">
+                    <div className = "editButton" onClick = {() => this.setState({isModalOpen: true})}>
                         edit
                     </div>
                     <div className = "starsContainer">
@@ -49,6 +59,15 @@ class AnimePage extends React.Component {
                 <div className = "videoContainer">
                     <iframe title = "video player" src={"https://www.youtube.com/embed/" + this.videoId()} />
                 </div>
+                <Modal
+                    className = "editAnimePageModal"
+                    isOpen = {isModalOpen}
+                    onRequestClose = {this.handleCloseModal}
+                    ariaHideApp={false}
+                    shouldFocusAfterRender={false}
+                >
+                    <EditAnimePageModal closeModal = {this.handleCloseModal}  animeInfo = {animeInfo}/>
+                </Modal>
             </div>
         );
     }
