@@ -93,8 +93,8 @@ class LogInModal extends React.Component {
                         />
                     </form>
                 </div>
-                <div  className = "errorContainer" style = {{display : (passwordError === '') ? 'none' : ''}}>
-                    {(passwordError === 'noPassword') ? 'Please type a password' : (passwordError === 'difPasswords') ? "Passwords don't match" : 'Error'}
+                <div  className = "errorContainer">
+                    {(passwordError === 'noPassword') ? 'Please type a password' : (passwordError === 'difPasswords') ? "Passwords don't match" : ' '}
                 </div>
                 <div className = "newUserSaveButton" onClick = {this.onSaveClick} >
                     save

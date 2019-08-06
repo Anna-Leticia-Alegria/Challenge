@@ -11,7 +11,6 @@ const DisplayPage = ({currentPage, currentAnimeItem, changePage}) => {
 
     switch(currentPage) {
         case "logIn":
-        case "logOut":
             return <div className = "displayPageContainer"> <LogInPage changePage = {changePage}/> </div>
         case "home":
             return <div className = "displayPageContainer"> <AnimePage animeInfo = {currentAnimeItem}/> </div>

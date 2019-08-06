@@ -1,11 +1,12 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 import './index.less';
 
 class ProfilePage extends React.Component {
     state = { actualUserData : {userName : 'Lele', userLastName : 'Alegria', userBirthDate : '23/10/1995', userEmail : 'annaalegria23@hotmail.com', userPassword : 'uauauiua'},
               newUserData : {userName : '', userLastName : '', userBirthDate : '', userEmail : '', userPassword : '', userConfirmPassword : ''},
-              isEditOn : false};
+              isEditOn : false, isModalOpen : false};
 
     onFormSubmit = (event) => {
         event.preventDefault(); //para impedir de atualizar a pagina depois de enivar o formulario
@@ -33,19 +34,24 @@ class ProfilePage extends React.Component {
         
     }
 
-    onCancelClick = () => {
-        //abrir popup de "tem certeza que quer cancelar?"
+    handleCloseModal = () => {
+        this.setState({isModalOpen : false})
+    }
+
+    onClickYesButton = () => {
         this.setState({newUserData :{ userName : '', userLastName : '', userBirthDate : '', userEmail : '', userPassword : ''}, isEditOn : false});
+        this.handleCloseModal();
     }
 
     render() {
-        const {isEditOn, actualUserData, newUserData} = this.state
+        const {actualUserData, newUserData, isEditOn, isModalOpen} = this.state
+
         return (
             <div className="profilePageContainer" >
                 <div className = "headerProfileContainer">
                     Profile
                 </div>
-                <div className = "editProfileButton" onClick = {() => {this.setState({isEditOn : true}); this.setState({newUserData : actualUserData})}}>
+                <div className = "editProfileButton" onClick = {() => {this.setState({isEditOn : !isEditOn}); this.setState({newUserData : actualUserData})}}>
                     edit
                 </div>
                 <div className = "fieldProfileContainer">
@@ -56,7 +62,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userName} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : event.target.value, userLastName : newUserData.userLastName, userBirthDate :newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword} } )}}
+                                onChange = {(event)=>{this.setState({newUserData: {...newUserData, userName: event.target.value}})}}
                             />
                         </form>
                         : actualUserData.userName}
@@ -70,7 +76,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userLastName} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : event.target.value, userBirthDate :newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword}} )}}
+                                onChange = {(event)=>{this.setState({newUserData: {...newUserData, userLastName: event.target.value}})}}
                             />
                         </form>
                         : actualUserData.userLastName}
@@ -84,7 +90,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userBirthDate} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : event.target.value, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword} } )}}
+                                onChange = {(event)=>{this.setState({newUserData: {...newUserData, userBirthDate: event.target.value}})}}
                             />
                         </form>
                         : actualUserData.userBirthDate}
@@ -98,7 +104,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "text" 
                                 value = {newUserData.userEmail} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : event.target.value, userPassword : newUserData.userPassword, userConfirmPassword : newUserData.userConfirmPassword} } )}}
+                                onChange = {(event)=>{this.setState({newUserData: {...newUserData, userEmail: event.target.value}})}}
                             />
                         </form>
                         : actualUserData.userEmail}
@@ -112,7 +118,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "password" 
                                 value = {newUserData.userPassword} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : event.target.value, userConfirmPassword : newUserData.userConfirmPassword} } )}}
+                                onChange = {(event)=>{this.setState({newUserData: {...newUserData, userPassword: event.target.value}})}}
                             />
                         </form>
                         : ''}
@@ -126,7 +132,7 @@ class ProfilePage extends React.Component {
                                 className = "changeUserInputContainer"
                                 type = "password" 
                                 value = {newUserData.userConfirmPassword} 
-                                onChange = {(event)=>{this.setState( { newUserData : {userName : newUserData.userName, userLastName : newUserData.userLastName, userBirthDate : newUserData.userBirthDate, userEmail : newUserData.userEmail, userPassword : newUserData.userPassword, userConfirmPassword : event.target.value} } )}}
+                                onChange = {(event)=>{this.setState({newUserData: {...newUserData, userConfirmPassword : event.target.value}})}}
                             />
                         </form>
                     </div>
@@ -135,10 +141,29 @@ class ProfilePage extends React.Component {
                     <div className = "profileBottomButton" onClick = {this.onSaveClick}>
                         save
                     </div>
-                    <div className = "profileBottomButton" onClick = {this.onCancelClick}>
+                    <div className = "profileBottomButton" onClick = {() => this.setState({isModalOpen: true})}>
                         cancel
                     </div>
                 </div>
+                <Modal
+                    className = "yesNoModal"
+                    isOpen = {isModalOpen}
+                    onRequestClose = {this.handleCloseModal}
+                    ariaHideApp={false}
+                    shouldFocusAfterRender={false}
+                >
+                    <div>
+                        Do you want to cancel?
+                    </div>
+                    <div className = "yesNoContainer">
+                        <div className = "yesNoButton" onClick = {this.onClickYesButton}>
+                            Yes
+                        </div>
+                        <div className = "yesNoButton" onClick = {this.handleCloseModal}>
+                            No
+                        </div>
+                    </div>
+                </Modal>
             </div>
         );
     }

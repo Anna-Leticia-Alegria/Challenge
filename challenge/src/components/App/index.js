@@ -17,6 +17,11 @@ class App extends React.Component {
         }
     }
 
+    logOut = () => {
+        this.setState({loggedIn : false})
+        this.setState({currentPage : 'logIn'})
+    }
+
     onAnimeSelected = (animeInfo) => {
         this.setState({animeSelected : animeInfo});
         this.setState({currentPage : 'home'});
@@ -26,7 +31,7 @@ class App extends React.Component {
         const {loggedIn, currentPage, animeSelected} = this.state
         return (
             <div className = "appContainer">
-                <Menu loggedIn = {loggedIn} currentPage = {currentPage} setPage = {this.setPage}/>
+                <Menu loggedIn = {loggedIn} currentPage = {currentPage} setPage = {this.setPage} logOut = {this.logOut}/>
                 <SideList loggedIn = {loggedIn} currentPage = {currentPage} onAnimeSelected = {this.onAnimeSelected} animeSelected = {animeSelected}/>
                 <DisplayPage currentPage = {currentPage}  currentAnimeItem = {animeSelected} changePage = {this.setPage}/>
             </div>
