@@ -10,14 +10,25 @@ class AddEditAnimeInfo extends React.Component {
     state = {name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: '', starsNotClicked: 0};
     categoryOptions = ['drama', 'isekai', 'shounen', 'shoujo'];
 
+    componentDidMount(){
+        const {isEdit, animeInfo} = this.props
+        if(isEdit === true) {
+            this.setState({name: animeInfo.name, category: animeInfo.category, nEpisodes: animeInfo.nEpisodes, date: animeInfo.date, ranked: animeInfo.ranked, nStars: animeInfo.nStars, image: animeInfo.image, synopsis: animeInfo.synopsis, trailerUrl: animeInfo.trailerUrl})
+        }
+        else{
+            let tempDate = new Date();
+            let date = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+            this.setState({date: date})            
+        }
+    } 
+
     onFormSubmit = (event) => {
         event.preventDefault(); //para impedir de atualizar a pagina depois de enivar o formulario
     }
 
     onSaveClick = () => {
-        //setar date com a data que a pessoa fez isso (parse?)
-        this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: '', starsNotClicked: 0});
         this.props.saveFunction(this.state)
+        this.setState({name: '', category: '', nEpisodes: '', date: '', ranked: false, nStars: 0, image: '', synopsis: "", trailerUrl: '', starsNotClicked: 0});
     }
 
     onStarClick = (nStars) => {
@@ -33,7 +44,7 @@ class AddEditAnimeInfo extends React.Component {
     }
 
     render () {
-        const {isEdit, animeInfo} = this.props
+        const {isEdit} = this.props
         const {name, category, nEpisodes, nStars,image, synopsis, trailerUrl, starsNotClicked} = this.state
         return (
             <div className = "addInfoContainer">
@@ -45,9 +56,10 @@ class AddEditAnimeInfo extends React.Component {
                         <input 
                             className = "addInfoInputContainer"
                             type = "text" 
-                            value = {(isEdit) ? animeInfo.name : name} 
+                            value = {name} 
                             onChange = {(event)=>{this.setState( { name : event.target.value } );}}
                             placeholder = "Type anime name here"
+                            style={{backgroundColor:(isEdit) ? '#F0EBFF' : ''}}
                         />
                     </form>
                 </div>
@@ -61,7 +73,7 @@ class AddEditAnimeInfo extends React.Component {
                         menuClassName = "categoryMenuDropdown"
                         options={this.categoryOptions} 
                         onChange={(event)=>{this.setState( { category : event.value } );}} 
-                        value={(isEdit) ? animeInfo.category : category}
+                        value={category}
                         placeholder="Select an option" 
                     />
                 </div>
@@ -73,9 +85,10 @@ class AddEditAnimeInfo extends React.Component {
                         <input 
                             className = "addInfoInputContainer"
                             type = "text" 
-                            value = {(isEdit) ? animeInfo.nEpisodes : nEpisodes}
+                            value = {nEpisodes}
                             onChange = {(event)=>{this.setState( { nEpisodes : event.target.value } );}}
                             placeholder = "Type episodes number here"
+                            style={{backgroundColor:(isEdit) ? '#F0EBFF' : ''}}
                         />
                     </form>
                 </div>
@@ -87,9 +100,10 @@ class AddEditAnimeInfo extends React.Component {
                         <input 
                             className = "addInfoInputContainer"
                             type = "text" 
-                            value = {(isEdit) ? animeInfo.synopsis : synopsis} 
+                            value = {synopsis} 
                             onChange = {(event)=>{this.setState( { synopsis : event.target.value } );}}
                             placeholder = "Type synopsis here"
+                            style={{backgroundColor:(isEdit) ? '#F0EBFF' : ''}}
                         />
                     </form>
                 </div>
@@ -98,7 +112,7 @@ class AddEditAnimeInfo extends React.Component {
                         Rank:
                     </div>
                     <div className = "addStarContainer">
-                        <Stars nStars = {(isEdit) ? animeInfo.nStars : (nStars) ? nStars : starsNotClicked} 
+                        <Stars nStars = {(nStars) ? nStars : starsNotClicked} 
                                 ranked = {true} addStars = {true} 
                                 onStarClick = {this.onStarClick} 
                                 onStarMousePass = {this.onStarMousePass} 
@@ -114,9 +128,10 @@ class AddEditAnimeInfo extends React.Component {
                         <input 
                             className = "addInfoInputContainer"
                             type = "text" 
-                            value = {(isEdit) ? animeInfo.image : image}  
+                            value = {image}  
                             onChange = {(event)=>{this.setState( { image : event.target.value } );}}
                             placeholder = "Paste image URL here"
+                            style={{backgroundColor:(isEdit) ? '#F0EBFF' : ''}}
                         />
                     </form>
                 </div>
@@ -128,13 +143,14 @@ class AddEditAnimeInfo extends React.Component {
                         <input 
                             className = "addInfoInputContainer"
                             type = "text" 
-                            value = {(isEdit) ? animeInfo.trailerUrl : trailerUrl}  
+                            value = {trailerUrl}  
                             onChange = {(event)=>{this.setState( { trailerUrl : event.target.value } );}}
                             placeholder = "Paste youtube trailer URL here"
+                            style={{backgroundColor:(isEdit) ? '#F0EBFF' : ''}}
                         />
                     </form>
                 </div>
-                <div className = "saveButton" onClick = {this.onSaveClick}>
+                <div className = "saveButton" onClick = {this.onSaveClick} style={{backgroundColor:(isEdit) ? '#F0EBFF' : ''}}>
                     Save
                 </div>
             </div>
