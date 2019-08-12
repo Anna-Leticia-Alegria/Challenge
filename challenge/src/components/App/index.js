@@ -7,7 +7,17 @@ import SideList from '../SideList/index'
 import DisplayPage from '../DisplayPage';
 
 class App extends React.Component {
-    state = { loggedIn : false , currentPage : 'logIn' , animeSelected : null }
+    state = { loggedIn : false , currentPage : 'logIn' , animeSelected : null, apiResponse: '' }
+    
+    callAPI() {
+        fetch("http://localhost:3001/user/annaalegria")
+            .then(res => res.text())
+            .then(res => this.setState({ apiResponse: res }));
+    }
+    
+    componentWillMount() {
+        this.callAPI();
+    }
 
     setPage = (currentPage) => {
         this.setState({currentPage : currentPage});
@@ -28,9 +38,10 @@ class App extends React.Component {
     };
 
     render () {
-        const {loggedIn, currentPage, animeSelected} = this.state
+        const {loggedIn, currentPage, animeSelected, apiResponse} = this.state
         return (
             <div className = "appContainer">
+                {console.log(apiResponse)}
                 <Menu loggedIn = {loggedIn} currentPage = {currentPage} setPage = {this.setPage} logOut = {this.logOut}/>
                 <SideList loggedIn = {loggedIn} currentPage = {currentPage} onAnimeSelected = {this.onAnimeSelected} animeSelected = {animeSelected}/>
                 <DisplayPage currentPage = {currentPage}  currentAnimeItem = {animeSelected} changePage = {this.setPage}/>
